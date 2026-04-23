@@ -1,0 +1,351 @@
+/* ============================================================
+   RELATIONAL OS — Design System Tokens & Global Styles
+   Extracted from Stitch HTML prototypes
+   ============================================================ */
+
+/* ---------- CSS Custom Properties (Design Tokens) ---------- */
+:root {
+  /* Brand Colors */
+  --color-primary-container: #1a1a2e;
+  --color-on-primary-container: #83829b;
+  --color-surface: #fcf8fa;
+  --color-on-surface: #1c1b1d;
+  --color-on-surface-variant: #47464c;
+  --color-surface-container: #f1edef;
+  --color-surface-container-low: #f6f2f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-variant: #e5e1e3;
+  --color-outline: #78767d;
+  --color-outline-variant: #c8c5cd;
+  --color-secondary: #7f5531;
+  --color-secondary-container: #ffc69a;
+  --color-secondary-fixed-dim: #f3bb90;
+  --color-error: #ba1a1a;
+  --color-error-container: #ffdad6;
+
+  /* Accent Colors */
+  --color-terracotta: #d46a4f;
+  --color-partner-purple: #a96dc0;
+  --color-warm-off-white: #f8f6f2;
+  --color-header-text: #e8d5c4;
+  --color-header-border: #2d2d44;
+  --color-nav-active: #c8956c;
+
+  /* Spacing */
+  --space-unit: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-padding: 24px;
+  --space-gutter: 16px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-full: 9999px;
+
+  /* Fonts */
+  --font-display: 'Newsreader', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-on-surface);
+  background-color: var(--color-warm-off-white);
+  min-height: 100dvh;
+}
+
+/* ---------- Typography Classes ---------- */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.text-question {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.text-body-md {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.text-label-caps {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.text-label-xs {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ---------- Material Icons ---------- */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+.material-symbols-outlined.fill {
+  font-variation-settings: 'FILL' 1, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+}
+
+/* ---------- Card System ---------- */
+.card {
+  background: var(--color-surface-container-lowest);
+  border: 1px solid #e5e1da;
+  border-radius: var(--radius-lg);
+  padding: var(--space-padding);
+}
+
+.card-dark {
+  background: var(--color-primary-container);
+  border-radius: var(--radius-lg);
+  padding: var(--space-padding);
+  color: var(--color-header-text);
+}
+
+/* ---------- Progress Bar ---------- */
+.progress-bar {
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.progress-bar__fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  width: 100%;
+  background: var(--color-terracotta);
+  color: white;
+  padding: 16px;
+  border: none;
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary {
+  width: 100%;
+  background: var(--color-secondary);
+  color: white;
+  padding: 20px;
+  border: none;
+  border-radius: var(--radius-lg);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.btn-secondary:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Chip / Tag ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-outline-variant);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-body);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-on-surface-variant);
+  background: var(--color-surface-container-lowest);
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+
+.chip:hover {
+  border-color: var(--color-terracotta);
+}
+
+.chip--active {
+  background: var(--color-primary-container);
+  border-color: var(--color-primary-container);
+  color: white;
+}
+
+/* ---------- Textarea ---------- */
+.textarea-minimal {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--color-outline-variant);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-on-surface);
+  padding: 8px 0;
+  min-height: 100px;
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.textarea-minimal::placeholder {
+  color: var(--color-outline);
+  opacity: 0.5;
+}
+
+.textarea-minimal:focus {
+  border-bottom-color: var(--color-secondary);
+}
+
+.textarea-card {
+  width: 100%;
+  background: white;
+  border: 1px solid #e5e1da;
+  border-radius: var(--radius-lg);
+  padding: var(--space-padding);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-on-surface);
+  resize: none;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.textarea-card::placeholder {
+  color: var(--color-outline-variant);
+}
+
+.textarea-card:focus {
+  border-color: var(--color-primary-container);
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+/* Stagger children */
+.stagger > * {
+  animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger > *:nth-child(3) { animation-delay: 0.15s; }
+.stagger > *:nth-child(4) { animation-delay: 0.2s; }
+.stagger > *:nth-child(5) { animation-delay: 0.25s; }
+.stagger > *:nth-child(6) { animation-delay: 0.3s; }
+.stagger > *:nth-child(7) { animation-delay: 0.35s; }
+.stagger > *:nth-child(8) { animation-delay: 0.4s; }
+
+/* ---------- Utility ---------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,8 @@
+.oraculo { display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
+.oraculo__header { margin-bottom: 0; }
+.oraculo__divider { width: 48px; height: 2px; background: var(--color-terracotta); margin-top: 8px; }
+.oraculo__input-wrap { position: relative; }
+.oraculo__input-icon { position: absolute; bottom: 16px; right: 16px; color: var(--color-terracotta); }
+.oraculo__tags { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; }
+.oraculo__tags::-webkit-scrollbar { display: none; }
+.oraculo__response { display: flex; flex-direction: column; align-items: center; }

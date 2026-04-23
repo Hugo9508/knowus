@@ -1,0 +1,64 @@
+.islas { display: flex; flex-direction: column; gap: 24px; padding-top: 8px; }
+.islas__header { margin-bottom: 8px; }
+.islas__list { display: flex; flex-direction: column; gap: 16px; }
+
+/* Island Row */
+.isla-row {
+  display: flex; align-items: center; gap: 16px; position: relative;
+  overflow: hidden; transition: transform 0.15s; padding: 16px; cursor: pointer;
+}
+.isla-row:active { transform: scale(0.98); }
+.isla-row--locked { opacity: 0.5; cursor: default; }
+.isla-row--locked:active { transform: none; }
+.isla-row__lock { position: absolute; top: 8px; right: 8px; font-size: 14px; color: var(--color-on-surface); }
+.isla-row__icon {
+  width: 48px; height: 48px; border-radius: 8px; background: var(--color-surface-container-low);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.isla-row__content { flex: 1; min-width: 0; }
+.isla-row__theory {
+  font-size: 11px; color: var(--color-outline); font-style: italic;
+  margin-top: 4px; letter-spacing: 0.01em;
+}
+
+/* Pilar Section */
+.pilar-section { margin-top: 8px; }
+.pilar-section__header {
+  display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;
+}
+.pilar-section__list { display: flex; flex-direction: column; gap: 8px; }
+
+/* Pilar Row with number badge */
+.pilar-row {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  transition: transform 0.15s, box-shadow 0.2s;
+}
+.pilar-row:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.04); transform: translateY(-1px); }
+.pilar-row:active { transform: scale(0.98); }
+.pilar-row__number {
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
+  background: var(--color-surface-container); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--color-secondary);
+  border: 1px solid var(--color-outline-variant);
+}
+.pilar-row__tags { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.pilar-row__tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--color-outline); background: var(--color-surface-container-low);
+  padding: 2px 8px; border-radius: 4px;
+}
+
+/* Locked Preview */
+.locked-preview {
+  border: 1px dashed var(--color-outline-variant); border-radius: 12px;
+  padding: 20px; opacity: 0.7;
+}
+
+/* Global Progress */
+.global-progress {
+  background: var(--color-warm-off-white); border: 1px solid #e5e1da;
+  border-radius: 12px; padding: 24px;
+}
+.global-progress__header {
+  display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 8px;
+}
