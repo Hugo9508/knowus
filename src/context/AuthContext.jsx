@@ -87,6 +87,8 @@ export function AuthProvider({ children }) {
     }
   }
 
+  const [mockUser, setMockUser] = useState(null)
+
   // Enviar OTP al email
   async function sendOtp(email, displayName) {
     const { error } = await supabase.auth.signInWithOtp({
@@ -109,22 +111,33 @@ export function AuthProvider({ children }) {
     return data
   }
 
+  // Login Estático (Mock)
+  function loginStatic(name, email) {
+    const fakeId = '00000000-0000-0000-0000-000000000000'
+    setMockUser({
+      user: { id: fakeId, email },
+      profile: { id: fakeId, display_name: name, email, partner_id: null }
+    })
+  }
+
   // Cerrar sesión
   async function signOut() {
     await supabase.auth.signOut()
     setSession(null)
     setProfile(null)
+    setMockUser(null)
   }
 
   const value = {
-    session,
-    user: session?.user ?? null,
-    profile,
-    loading,
-    isAuthenticated: !!session,
+    session: session || (mockUser ? { user: mockUser.user } : null),
+    user: session?.user || mockUser?.user,
+    profile: profile || mockUser?.profile,
+    loading: loading && !mockUser,
+    isAuthenticated: !!session || !!mockUser,
     sendOtp,
     verifyOtp,
     signOut,
+    loginStatic
   }
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

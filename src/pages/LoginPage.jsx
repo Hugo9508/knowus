@@ -4,12 +4,11 @@ import { useAuth } from '../context/AuthContext'
 import './AuthPages.css'
 
 export default function LoginPage() {
-  const [displayName, setDisplayName] = useState('')
+  const [displayName, setDisplayName] = useState('admin')
   const [email, setEmail] = useState('')
   const [error, setError] = useState('')
-  const [sending, setSending] = useState(false)
   const navigate = useNavigate()
-  const { sendOtp } = useAuth()
+  const { loginStatic } = useAuth()
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -20,28 +19,23 @@ export default function LoginPage() {
       return
     }
 
-    // Whitelist de emails permitidos
+    // Whitelist de emails permitidos (opcional en testing, pero lo mantenemos por seguridad)
     const allowedEmails = (import.meta.env.VITE_ALLOWED_EMAILS || '')
       .split(',')
       .map((e) => e.trim().toLowerCase())
 
-    if (!allowedEmails.includes(email.trim().toLowerCase())) {
+    if (allowedEmails.length > 0 && import.meta.env.VITE_ALLOWED_EMAILS && !allowedEmails.includes(email.trim().toLowerCase())) {
       setError('Este email no tiene acceso a la app. Relational OS es por invitación.')
       return
     }
 
-    setSending(true)
     try {
-      await sendOtp(email.trim(), displayName.trim())
-      // Guardamos en sessionStorage para la pantalla de verificación
-      sessionStorage.setItem('otp_email', email.trim())
-      sessionStorage.setItem('otp_name', displayName.trim())
-      navigate('/verify')
+      // Login estático bypass
+      loginStatic(displayName.trim(), email.trim())
+      navigate('/')
     } catch (err) {
-      console.error('Error enviando OTP:', err)
-      setError(err.message || 'Error al enviar el código. Intentá de nuevo.')
-    } finally {
-      setSending(false)
+      console.error('Error en login estático:', err)
+      setError('Error al iniciar sesión en modo testing.')
     }
   }
 
@@ -58,11 +52,11 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-field">
-            <label htmlFor="displayName">¿Cómo te llamás?</label>
+            <label htmlFor="displayName">Usuario</label>
             <input
               id="displayName"
               type="text"
-              placeholder="Tu nombre"
+              placeholder="Admin"
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               autoComplete="name"
@@ -71,7 +65,7 @@ export default function LoginPage() {
           </div>
 
           <div className="auth-field">
-            <label htmlFor="email">Tu email</label>
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -87,17 +81,12 @@ export default function LoginPage() {
           <button
             type="submit"
             className="auth-btn"
-            disabled={sending}
           >
-            {sending ? (
-              <span className="auth-spinner" />
-            ) : (
-              'Enviar código de acceso'
-            )}
+            Entrar (Modo Testing)
           </button>
 
           <p className="auth-hint">
-            Te enviaremos un código de 6 dígitos a tu email. Sin contraseñas.
+            Login estático activado. Ingresa tu correo para probar.
           </p>
         </form>
       </div>
